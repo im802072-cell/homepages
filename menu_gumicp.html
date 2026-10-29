@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>구미캠퍼스 식단 · 비산동 날씨</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1c2330;--sub:#667085;--line:#e4e7ec;--accent:#0a6cff;--accent-bg:#e8f1ff;--warn:#b54708;--warn-bg:#fff4e5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141b;--card:#1a212c;--text:#eef1f6;--sub:#9aa4b5;--line:#2a3342;--accent:#5b9dff;--accent-bg:#1c2c47;--warn:#ffb866;--warn-bg:#3a2a14;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10141b;--card:#1a212c;--text:#eef1f6;--sub:#9aa4b5;--line:#2a3342;--accent:#5b9dff;--accent-bg:#1c2c47;--warn:#ffb866;--warn-bg:#3a2a14;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:22px;margin:0 0 2px}
+.sub{color:var(--sub);font-size:13px;margin:0 0 14px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:14px}
+.seg button{border:0;background:none;color:var(--sub);font:inherit;font-size:15px;padding:9px;border-radius:9px;cursor:pointer}
+.seg button.on{background:var(--accent);color:#fff}
+.strip{display:flex;align-items:center;gap:10px;background:var(--accent-bg);color:var(--accent);border-radius:10px;padding:9px 12px;font-size:13.5px;margin-bottom:14px;cursor:pointer}
+.notice{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:9px 12px;font-size:12.5px;margin-bottom:14px}
+.times{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.t{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px;color:var(--sub)}
+.t b{display:block;color:var(--text);font-size:13px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}
+.tab{flex:1 0 auto;min-width:52px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+.tab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab .d{display:block;font-size:10px;opacity:.8;line-height:1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.card.now{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-bg)}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.mh h2,.card h2{font-size:15px;margin:0 0 8px}
+.mh h2{margin:0}
+.mh span{font-size:12px;color:var(--sub)}
+.badge{background:var(--accent-bg);color:var(--accent);font-size:11px;border-radius:6px;padding:2px 7px;margin-left:6px}
+.items{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 9px;font-size:14px}
+.chip.star{background:var(--accent-bg);border-color:transparent;color:var(--accent);font-weight:600}
+.empty{text-align:center;color:var(--sub);padding:36px 0}
+.big{display:flex;align-items:center;gap:14px}
+.big .ic{font-size:48px;line-height:1}
+.big .tp{font-size:40px;font-weight:700;line-height:1}
+.big .ds{color:var(--sub);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.grid div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px;color:var(--sub)}
+.grid b{display:block;color:var(--text);font-size:15px}
+.tip{margin-top:10px;font-size:13.5px}
+form.f{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.f label{font-size:12px;color:var(--sub);display:block}
+.f input,.f select{width:100%;margin-top:2px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);font:inherit;font-size:14px}
+.btn{grid-column:1/-1;border:0;background:var(--accent);color:#fff;border-radius:10px;padding:10px;font:inherit;font-size:14px;cursor:pointer}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.links a{display:block;text-align:center;text-decoration:none;color:var(--accent);background:var(--accent-bg);border-radius:10px;padding:10px;font-size:14px}
+.hint{color:var(--sub);font-size:12px;margin:6px 0 0}
+.foot{color:var(--sub);font-size:11.5px;margin-top:18px;text-align:center}
+.foot a{color:var(--accent)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🏫 구미캠퍼스 오늘</h1>
+  <p class="sub">식단정보(10/26~11/1 주) · 비산동 날씨</p>
+  <div class="seg"><button id="bm" class="on">🍚 식단</button><button id="bw">⛅ 날씨</button></div>
+
+  <section id="meal">
+    <div class="strip" id="strip" hidden></div>
+    <div class="notice">※ 메뉴는 식당 운영 및 식자재 수급 상황에 따라 변경될 수 있습니다.</div>
+    <div class="times">
+      <div class="t"><b>🌅 아침</b>07:50 ~ 08:40</div>
+      <div class="t"><b>☀️ 점심</b>11:50 ~ 13:10</div>
+      <div class="t"><b>🌙 저녁</b>16:50 ~ 17:40<br>월~목 수업 학생 18시까지</div>
+    </div>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div id="view"></div>
+    <p class="foot">10월 29일 기준으로 가져온 식단입니다(주가 바뀌면 갱신이 필요해요). 최신 식단은 <a href="https://www.kopo.ac.kr/gumi/content.do?menu=4941" target="_blank" rel="noopener">학교 홈페이지</a>에서 확인하세요.</p>
+  </section>
+
+  <section id="wx" hidden>
+    <div class="card" id="wcard"></div>
+    <div class="card">
+      <h2>✏️ 날씨 직접 입력</h2>
+      <form class="f" id="wf">
+        <label>기온(°C)<input id="wt" type="number" step="0.1" required></label>
+        <label>날씨<select id="wc"><option>맑음</option><option>구름많음</option><option>흐림</option><option>비</option><option>눈</option><option>안개</option></select></label>
+        <label>습도(%)<input id="wh" type="number" min="0" max="100"></label>
+        <label>바람(m/s)<input id="ww" type="number" step="0.1" min="0"></label>
+        <button class="btn" type="submit">저장</button>
+      </form>
+      <p class="hint">이 기기의 브라우저에만 저장됩니다. 실시간 자동 갱신은 지원하지 않습니다.</p>
+    </div>
+    <div class="card">
+      <h2>🔗 weather.com 비산동 바로가기</h2>
+      <div class="links">
+        <a href="https://weather.com/ko-KR/kr/gyeongsangbuk-do/gumi/neighborhood/bisan-dong/today" target="_blank" rel="noopener">오늘</a>
+        <a href="https://weather.com/ko-KR/weather/hourbyhour/l/neighborhood.1543292" target="_blank" rel="noopener">시간별</a>
+        <a href="https://weather.com/ko-KR/weather/tenday/l/neighborhood.1543292" target="_blank" rel="noopener">10일 예보</a>
+        <a href="https://weather.com/ko-KR/weather/radar/interactive/l/neighborhood.1543292" target="_blank" rel="noopener">레이더</a>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+const DAYS=["월","화","수","목","금","토","일"],FULL=["월요일","화요일","수요일","목요일","금요일","토요일","일요일"];
+const M=[
+ ["컵밥,음료","잡곡밥,만둣국,돈갈비찜,꽃맛살샐러드,오이양파무침,포기김치","쌀밥,얼큰쇠고기무국,두부조림,모듬강정,호박당근볶음,포기김치"],
+ ["모카크림빵,흰우유","잡곡밥,참치김치찌개,어니언치킨까스,건새우마늘쫑무침,단배추생채,깍두기","흰밥,돼지국밥,야채고로케/케찹,풋고추된장무침,부추양파무침,석박지/요구르트"],
+ ["컵밥,음료","나가사끼짬뽕,마파두부,깐쇼새우,토마토샐러드/드레싱,포기김치,흰밥","흰밥,유부장국,불닭볶음닭,맛감자/케이준S,케요네즈,포기김치"],
+ ["모카크림빵,흰우유","잡곡밥,조랭이미역국,바싹불고기/파채,무조림,명엽채조림,포기김치","흰밥,부대찌개,계란후라이,청양멸치볶음,상추양파무침,포기김치"],
+ ["컵밥,음료","콩나물밥/양념장,바지락고추장찌개,팽이버섯짬뽕조림,도시락김,포기김치,음료","쌀밥,계란탕,오징어당면볶음,강된장,양배추찜/간장,포기김치"],
+ ["","",""],["","",""]];
+const MEALS=[["🌅 아침","07:50 ~ 08:40"],["☀️ 점심","11:50 ~ 13:10"],["🌙 저녁","16:50 ~ 17:40"]];
+const ENDS=[8*60+40,13*60+10,17*60+40];
+const ICON={"맑음":"☀️","구름많음":"⛅","흐림":"☁️","비":"🌧️","눈":"❄️","안개":"🌫️"};
+const now=new Date(),today=(now.getDay()+6)%7;
+let sel=today;
+const $=id=>document.getElementById(id);
+
+function curMeal(){const m=now.getHours()*60+now.getMinutes();for(let i=0;i<3;i++)if(m<=ENDS[i])return i;return -1;}
+function renderMeal(){
+  const tabs=$("tabs");tabs.innerHTML="";
+  DAYS.forEach((d,i)=>{const b=document.createElement("button");b.className="tab"+(i===sel?" on":"");b.setAttribute("role","tab");
+    b.innerHTML=d+(i===today?'<span class="d">오늘</span>':'<span class="d">&nbsp;</span>');
+    b.onclick=()=>{sel=i;renderMeal();};tabs.appendChild(b);});
+  const row=M[sel],v=$("view");
+  if(!row.some(x=>x)){v.innerHTML='<div class="empty">🍽️ '+FULL[sel]+'은 식단이 제공되지 않습니다.</div>';return;}
+  const cm=sel===today?curMeal():-2;
+  v.innerHTML=row.map((s,i)=>{
+    const chips=s.split(",").map(x=>x.trim()).filter(Boolean).map(x=>{const st=x.startsWith("*");return '<span class="chip'+(st?" star":"")+'">'+(st?x.replace(/\*/g,""):x)+'</span>';}).join("");
+    return '<div class="card'+(i===cm?" now":"")+'"><div class="mh"><h2>'+MEALS[i][0]+(i===cm?'<span class="badge">지금</span>':'')+'</h2><span>'+MEALS[i][1]+'</span></div><div class="items">'+chips+'</div></div>';
+  }).join("");
+}
+
+function loadW(){try{return JSON.parse(localStorage.getItem("gumi-wx")||"null");}catch(e){return null;}}
+function saveW(w){try{localStorage.setItem("gumi-wx",JSON.stringify(w));}catch(e){}}
+function tip(t){
+  if(t<=0)return "🧥 매우 추워요. 두꺼운 패딩과 장갑을 챙기세요.";
+  if(t<10)return "🧥 쌀쌀해요. 코트나 두꺼운 겉옷이 필요해요.";
+  if(t<18)return "🧶 선선해요. 가벼운 겉옷을 챙기세요.";
+  if(t<26)return "👕 활동하기 좋은 날씨예요.";
+  return "🥵 더워요. 수분 섭취에 신경 쓰세요.";
+}
+function renderW(){
+  const w=loadW(),c=$("wcard"),s=$("strip");
+  if(!w){c.innerHTML='<h2>📍 비산동, 구미시</h2><div class="empty" style="padding:16px 0">저장된 날씨가 없습니다.<br>아래에서 현재 날씨를 입력해 주세요.</div>';s.hidden=true;return;}
+  const when=new Date(w.at),ts=(when.getMonth()+1)+"/"+when.getDate()+" "+String(when.getHours()).padStart(2,"0")+":"+String(when.getMinutes()).padStart(2,"0");
+  c.innerHTML='<h2>📍 비산동, 구미시</h2><div class="big"><div class="ic">'+(ICON[w.c]||"🌡️")+'</div><div><div class="tp">'+w.t+'°C</div><div class="ds">'+w.c+' · 입력 '+ts+'</div></div></div>'+
+    '<div class="grid"><div><b>'+(w.h===""?"-":w.h+"%")+'</b>습도</div><div><b>'+(w.w===""?"-":w.w+" m/s")+'</b>바람</div><div><b>'+w.c+'</b>상태</div></div><div class="tip">'+tip(+w.t)+'</div>';
+  s.hidden=false;s.textContent=(ICON[w.c]||"🌡️")+" 비산동 "+w.t+"°C · "+w.c+" — "+tip(+w.t).slice(3);
+}
+$("wf").onsubmit=e=>{e.preventDefault();
+  saveW({t:$("wt").value,c:$("wc").value,h:$("wh").value,w:$("ww").value,at:Date.now()});
+  renderW();};
+function show(w){
+  $("meal").hidden=w!=="meal";$("wx").hidden=w!=="wx";
+  $("bm").classList.toggle("on",w==="meal");$("bw").classList.toggle("on",w==="wx");
+  location.hash=w==="wx"?"weather":"meal";
+}
+$("bm").onclick=()=>show("meal");$("bw").onclick=()=>show("wx");
+$("strip").onclick=()=>show("wx");
+renderMeal();renderW();
+show(location.hash==="#weather"?"wx":"meal");
+</script>
+</body>
+</html>
